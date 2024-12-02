@@ -1,7 +1,7 @@
 <template>
     <v-container class="ma-0 d-flex flex-column justify-start w-100">
         
-        <!-- sample use for japDatepicker -->
+        <!-- sample use for japanese Datepicker -->
         <v-row class="pa-3 w-75">
             <v-col class="mx-2 pa-0" cols="4">
                 <p>Default</p>
