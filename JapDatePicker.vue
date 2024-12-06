@@ -4,7 +4,7 @@
             <v-text-field
                 variant="outlined"
                 density="compact"
-                v-bind="props"
+                v-bind="{ ...props, ...$attrs }"
                 readonly
                 clearable
                 v-model="formattedDate"
@@ -39,7 +39,7 @@
     import { ref, computed, watch } from "vue";
     import { DATE_FORMAT_JA, DATE_FORMAT_JA_JP, YEAR_MONTH_DAY_DASH } from "~/constants/datetime";
 
-    const props = defineProps(["mode"]);
+    const props = defineProps(["mode", "defaultDate"]);
 
     const selectedDate = ref(null);
     const viewMode = ref(props.mode || "month");
@@ -87,6 +87,10 @@
     const onMonthSelected = () => {
         viewMode.value = "month";
     };
+
+    onMounted(() => {
+        selectedDate.value = props.defaultDate ? new Date(props.defaultDate) : null;
+    });
 
     watch(selectedDate, (newValue) => {
         if (newValue == null) {
