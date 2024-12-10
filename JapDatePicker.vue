@@ -37,6 +37,7 @@
      *
      */
     import { ref, computed, watch } from "vue";
+    import dayjs from "dayjs";
     import { DATE_FORMAT_JA, DATE_FORMAT_JA_JP, YEAR_MONTH_DAY_DASH } from "~/constants/datetime";
 
     const props = defineProps(["mode", "defaultDate"]);
@@ -63,6 +64,10 @@
     const updateDateResults = (commonDate) => {
         const formattedDate = FormatDate(commonDate, YEAR_MONTH_DAY_DASH);
         emit("selectedDate", !isValidDate(formattedDate) ? null : formattedDate);
+    };
+
+    const FormatDate = (date) => {
+        return dayjs(date).format('YYYY-MM-DD');
     };
 
     const formatDisplay = (date) => {
